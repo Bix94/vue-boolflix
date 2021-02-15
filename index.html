@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- VueJs -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <!-- jsjquery -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet"> -->
+    <!-- awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/framework.css">
+  </head>
+  <body>
+    <div id="app">
+    <header>
+      <div class="row spb aic tcw top mgl_20   mgr_20">
+        <!-- logo willoflix -->
+        <div class="row aic sx">
+          <img class="logo" src="img/logo.png" alt="">
+          <!-- navbar -->
+          <ul class="navbar">
+            <li>Home</li>
+            <li>Serie Tv</li>
+            <li>Film</li>
+            <li>Nuovi e popolari</li>
+            <li>La mia lista</li>
+          </ul>
+        </div>
+        <!-- INPUT VMODEL @KEYUP VISIBLE IF  -->
+        <div class="dx row aic">
+          <input v-model="query" @keyup.enter="ricerca"  type="text" value="" v-if="visibile" placeholder="Titolo,Genere,Attori">
+          <ul class="utente">
+            <!-- Mostro al click -->
+            <li><i class="fas fa-search" @click="mostra"></i></li>
+            <li class="up">bambini</li>
+            <li><i class="fas fa-gift"></i></li>
+            <li><i class="fas fa-bell"></i></li>
+            <li> <img src="data:image/jpeg;base64,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" alt="">
+            <i class="fas fa-sort-down"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Video + funzione click -->
+    <div class="video" @click="playPause">
+      <!-- autoplay -->
+      <video id="video1" class="video"  autoplay>
+        <source src="vid/video.mp4" type="video/mp4">
+      </video>
+      <div class="descrizione column">
+        <img src="https://i.imgur.com/LiCYbgi.png" alt="">
+        <div class="row tac player">
+          <!-- font ico -->
+          <span id="play"><i class="fas fa-play"></i>Riproduci</span>
+          <span id="info"><i class="fas fa-info-circle"></i>Altre info</span>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="libreria row aic jcc">
+        <!-- ciclo elemento in elementi -->
+          <div v-for="elemento in elementi" class="box tac column aic">
+            <div class="ace">
+              <!-- copertina non disponibile -->
+              <img v-if="elemento.poster_path == null" src="img/null.png" alt="">
+              <!-- copertina elemento -->
+              <img v-else :src="imgUrl+imgSize+elemento.poster_path" alt="">
+            </div>
+            <div class="king">
+              <!-- stampo titolo -->
+              <h2>{{elemento.title}} </h2>
+              <!-- se il titolo secondario è uguale al primo non lo visualizzo -->
+              <h3 v-if="elemento.original_title != elemento.title">{{elemento.original_title}} </h3>
+              <!-- nomino nome img bandiere == a language cosi le carico direttamente -->
+              Lingua audio:    <img id="flag" :src=" 'img/' + elemento.original_language + '.png' " alt="">
+              <div class="row rate">
+                <p>
+                  Rating:
+                  <i v-for="i in ottengoVoto(elemento.vote_average)" class="fas fa-star"> </i>
+                  <i v-for="i in 5-ottengoVoto(elemento.vote_average)" class="far fa-star"> </i>
+                </p>
+              </div>
+              <div class="aaa">
+                <p>
+                  Trama: {{elemento.overview}}
+                </p>
+              </div>
+            </div>
+          </div>
+      </div>
+    <!-- PROSSIMAMENTE -->
+          <h2 class="cod">Prossimamente</h2>
+          <div class="wrapper">
+            <!-- unica width -->
+            <section>
+                <div v-for="up in upcoming" class="row topRated tac">
+                  <img :src="imgUrl+imgSize+up.poster_path" alt="">
+                </div>
+            </section>
+          </div>
+
+    <!-- TITOLI DEL MOMENTO -->
+          <h2 class="cod">I titoli del momento</h2>
+          <div class="wrapper">
+            <!-- PRIMA WIDTH -->
+            <section id="prima">
+              <a id="sinistra" href="#seconda"> < </a>
+              <div v-for="popolare in popolari" class="popolari">
+                <img :src="imgUrl+imgSize+popolare.poster_path" alt="">
+              </div>
+              <a id="destra" href="#seconda"> > </a>
+            </section>
+            <!-- SECONDA WIDTH -->
+            <section id="seconda">
+              <a id="sinistra" href="#prima"> < </a>
+              <div v-for="popolare in popolariDue" class="popolari">
+                <img :src="imgUrl+imgSize+popolare.poster_path" alt="">
+              </div>
+              <a id="destra" href="#prima"> > </a>
+            </section>
+          </div>
+
+    <!-- I PIU POPOLARI -->
+          <h2 class="cod">I più popolari</h2>
+          <div class="wrapper">
+            <!-- PRIMA WIDTH -->
+            <section id="primaDue">
+              <a id="sinistraDue" href="#secondaDue"> < </a>
+              <div v-for="top in topRatedDue" class="row topRated">
+                <img :src="imgUrl+imgSize+top.poster_path" alt="">
+              </div>
+              <a id="destraDue" href="#secondaDue"> > </a>
+            </section>
+            <!-- SECONDA WIDTH -->
+            <section id="secondaDue">
+              <a id="sinistraDue" href="#primaDue"> < </a>
+              <div v-for="top in topRated" class="row topRated">
+                <img :src="imgUrl+imgSize+top.poster_path" alt="">
+              </div>
+              <a id="destraDue" href="#primaDue"> > </a>
+            </section>
+          </div>
+
+
+  <!-- WARNING SISTEMARE ALTEZZE BOX -->
+
+
+
+
+    </main>
+    <footer>
+      <ul class="social pdt_90 centro">
+        <li><i class="fab fa-facebook-square"></i></li>
+        <li><i class="fab fa-instagram"></i></li>
+        <li><i class="fab fa-twitter"></i></li>
+        <li><i class="fab fa-youtube"></i></li>
+      </ul>
+      <div class="row foot pdt_10 pdb_20 centro">
+        <div class="column col">
+          <ul>
+            <li>Audio e sottotitoli</li>
+            <li>Media Center</li>
+            <li>Privacy</li>
+            <li>Contattaci</li>
+          </ul>
+        </div>
+        <div class="column col">
+          <ul>
+            <li>Audiodescrizione</li>
+            <li>Rapporti con gli investitori</li>
+            <li>Note legali</li>
+          </ul>
+        </div>
+        <div class="column col">
+          <ul>
+            <li>Centro Assistenza</li>
+            <li>Opportunità di lavoro</li>
+            <li>Preferenze per i cookie</li>
+          </ul>
+        </div>
+        <div class="column col">
+          <ul>
+            <li>Carte regalo</li>
+            <li>Condizioni di utilizzo</li>
+            <li>Informazioni sull'azienda</li>
+          </ul>
+        </div>
+      </div>
+      <div class="centro rights pdt_10 pdb_50">
+        <span >Codice di servizio</span>
+        <p>© 1997 - 2021 Netflix, Inc.</p>
+      </div>
+
+    </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

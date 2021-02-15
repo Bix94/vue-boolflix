@@ -1,0 +1,297 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #141414;
+}
+
+header{
+  height: 70px;
+  background-color: #141414;
+  transition: width 4s ease-out 2s;
+}
+
+main{
+  background-color: #141414;
+}
+
+.top{
+  height: 100%;
+}
+
+.navbar li ,.utente li{
+  display: inline;
+  text-decoration: none;
+}
+
+.navbar li:hover{
+  opacity: 0.7;
+}
+
+.utente li{
+  padding-right: 20px;
+}
+
+.utente img{
+  height: 40px;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+input{
+  border: 1px solid black;
+  height: 30px;
+  width: 150px;
+  margin-right: 20px;
+}
+
+.video{
+  position: relative;
+  width: 100%;
+  background-color: #141414;
+}
+
+.descrizione{
+  position: absolute;
+  top: 25%;
+  left: -3%;
+  color: #f1f1f1;
+  width: 40%;
+  padding: 20px;
+}
+
+.descrizione span{
+  width: 35%;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px ;
+}
+
+.descrizione span:hover{
+  opacity: 0.7;
+}
+
+.descrizione i{
+  padding-right: 15px;
+}
+
+.player{
+  margin-left: 130px;
+  margin-top: 20px;
+}
+
+#play{
+  color: black;
+  background-color: white;
+  margin-right: 10px;
+}
+
+#info{
+  color: white;
+  background-color: #808080;
+
+}
+
+.logo{
+  height: 30px;
+  margin-right: 70px;
+  margin-left: 30px;
+}
+
+.navbar li{
+  padding-right: 10px;
+}
+
+.consigli{
+  margin-left: 55px;
+}
+
+.consigli h2{
+  padding: 20px 0;
+  color: #ffffff;
+}
+
+.popolari img , .topRated img{
+  height: 200px;
+  margin-right: 15px;
+}
+
+
+
+.libreria {
+  flex-wrap: wrap;
+}
+
+.libreria img{
+  height: 250px;
+}
+
+.box{
+  position: relative;
+  flex-basis: 200px;
+  margin: 20px;
+}
+
+.box img{
+  border-radius: 10px;
+}
+
+.aaa{
+  height: 70px;
+  overflow: scroll;
+  font-size: 10px;
+}
+
+#flag{
+  height: 30px;
+  margin: 10px 0 ;
+}
+
+footer{
+  background-color: #141414;
+  color: #808080;
+}
+
+.social li {
+  display: inline;
+  font-size: 35px;
+  padding-right: 20px;
+}
+
+.foot li{
+  list-style: none;
+  padding-bottom: 10px;
+  font-size: 15px;
+}
+
+.foot li:hover{
+  text-decoration: underline;
+}
+
+.col{
+  margin-right: 140px;
+}
+
+.rights span{
+  border: 1px solid #808080;
+  padding: 5px 5px;
+}
+
+.rights span:hover{
+  color: white;
+}
+
+.rights p{
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.ace img{
+  display: block;
+}
+
+.king{
+  position: absolute;
+  top: 0;
+  background-color:black;
+  color: #f1f1f1;
+  width: 100%;
+  opacity:0;
+  color: white;
+  text-align: center;
+  height: 100%;
+  padding: 5px;
+}
+
+.king h2 , .king h3{
+  padding-top: 5px;
+}
+
+.king img{
+  vertical-align: middle;
+  margin-left: 15px;
+}
+
+.rate{
+  margin-left: 22px;
+}
+
+.box:hover .king {
+  opacity: 1;
+}
+/* SLIDER WARNING */
+
+html{
+  scroll-behavior: smooth;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 100%);
+  overflow: hidden;
+  scroll-behavior: smooth;
+  margin-left: 20px;
+}
+
+section{
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  margin: 50px 0;
+}
+
+.wrapper section div {
+  transition: 1000ms all;
+}
+
+.wrapper section div:hover {
+  margin: 0 40px;
+  transform: scale(1.5);
+  transition: 500ms all;
+}
+
+
+
+#sinistra, #sinistraDue{
+  height: 180px;
+  top: 50px;
+}
+
+#destra, #destraDue{
+  top: 50px;
+  right: 20px;
+  height: 180px;
+}
+
+.prova{
+  position: absolute;
+  font-size: 50px;
+  z-index: 1;
+  width: 100px;
+}
+
+section a{
+  position: absolute;
+  top: 40px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 5rem;
+  width: 100px;
+  padding: 30px;
+  z-index: 1;
+}
+
+section a:hover{
+  transform: scale(1.2);
+}
+
+#prima , #primaDue{
+  margin-left: 10px;
+}
+
+.cod{
+  margin-left: 20px;
+  margin-top: 50px;
+  color: #e5e5e5;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
